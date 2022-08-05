@@ -120,7 +120,7 @@ describe('PostgreSQLConnection', () => {
         expect(await RoleThing.count()).toEqual(1);
         expect(role.name).toEqual('admin');
 
-        let result = await user.createUserThingRole({ name: 'test' }, { update: true });
+        let result = await user.createUserThingRole({ name: 'test' });
         expect(result).toBeInstanceOf(Role);
         expect(result.name).toEqual('test');
       });

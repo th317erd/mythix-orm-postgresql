@@ -57,7 +57,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        let values = await connection.pluck(User.where.ORDER('firstName'), 'firstName', 'lastName');
+        let values = await connection.pluck(User.where.ORDER('firstName'), [ 'firstName', 'lastName' ]);
         expect(values).toEqual([
           [ 'Mary', 'Anne' ],
           [ 'Test', 'User' ],
@@ -72,7 +72,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        let values = await connection.pluck(User.where.ORDER('firstName'), 'firstName', [ 'lastName' ]);
+        let values = await connection.pluck(User.where.ORDER('firstName'), [ 'firstName', 'lastName' ]);
         expect(values).toEqual([
           [ 'Mary', 'Anne' ],
           [ 'Test', 'User' ],

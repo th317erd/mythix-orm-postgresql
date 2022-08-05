@@ -40,7 +40,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        let users = await Utils.collect(User.where.all());
+        let users = await User.where.all();
         expect(users).toBeInstanceOf(Array);
         expect(users.length).toEqual(2);
         expect(users[0]).toBeInstanceOf(User);
@@ -48,7 +48,7 @@ describe('PostgreSQLConnection', () => {
         expect(users[0].id).toEqual(insertModels[0].id);
         expect(users[1].id).toEqual(insertModels[1].id);
 
-        users = await Utils.collect(User.where.firstName.EQ('Test').all());
+        users = await User.where.firstName.EQ('Test').all();
         expect(users).toBeInstanceOf(Array);
         expect(users.length).toEqual(1);
         expect(users[0]).toBeInstanceOf(User);
@@ -67,7 +67,7 @@ describe('PostgreSQLConnection', () => {
 
         await User.where.update({ firstName: 'The', lastName: 'Thang' });
 
-        let users = await Utils.collect(User.where.all());
+        let users = await User.where.all();
         expect(users).toBeInstanceOf(Array);
         expect(users.length).toEqual(2);
         expect(users[0].id).toEqual(insertModels[0].id);
@@ -88,7 +88,7 @@ describe('PostgreSQLConnection', () => {
 
         await User.where.firstName.EQ('Mary').update({ firstName: 'The', lastName: 'Thang' });
 
-        let users = await Utils.collect(User.where.all());
+        let users = await User.where.all();
         expect(users).toBeInstanceOf(Array);
         expect(users.length).toEqual(2);
         expect(users[0].id).toEqual(insertModels[0].id);
@@ -131,7 +131,7 @@ describe('PostgreSQLConnection', () => {
 
         await User.where.firstName.EQ('Mary').destroy();
 
-        let users = await Utils.collect(User.where.all());
+        let users = await User.where.all();
         expect(users).toBeInstanceOf(Array);
         expect(users.length).toEqual(1);
         expect(users[0].id).toEqual(insertModels[0].id);
@@ -386,7 +386,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        let results = await User.where.ORDER('firstName').pluck('firstName', [ 'lastName' ]);
+        let results = await User.where.ORDER('firstName').pluck([ 'firstName', 'lastName' ]);
         expect(results).toEqual([
           [ 'Mary', 'Anne' ],
           [ 'Test', 'User' ],
