@@ -21,7 +21,8 @@ async function createConnection() {
     },
     DBCredentials,
     {
-      models: require('../../support/models'),
+      bindModels: false,
+      models:     require('../../support/models'),
     },
   ));
 

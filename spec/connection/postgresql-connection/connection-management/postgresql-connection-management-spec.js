@@ -15,6 +15,7 @@ describe('PostgreSQLConnection', () => {
 
     beforeEach(async () => {
       connection = new PostgreSQLConnection({
+        bindModels:         false,
         maxPoolConnections: 2,
         models:             require('../../../support/models'),
       });
