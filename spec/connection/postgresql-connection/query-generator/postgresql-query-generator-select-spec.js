@@ -342,11 +342,6 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator = connection.getQueryGenerator();
       expect(queryGenerator.generateSelectQueryJoinTables(User.where.primaryRoleID.EQ('derp').AND.id.EQ('hello'))).toEqual('');
     });
-
-    it('should throw an error if the join point has a condition', () => {
-      let queryGenerator = connection.getQueryGenerator();
-      expect(() => queryGenerator.generateSelectQueryJoinTables(User.where.primaryRoleID.EQ(Role.where.id.EQ('derp')))).toThrow(new Error('PostgreSQLQueryGenerator::getJoinTableInfoFromQueryEngine: Invalid operation: Expected a field to join on, but instead received a query.'));
-    });
   });
 
   describe('generateSelectWhereConditions', () => {
