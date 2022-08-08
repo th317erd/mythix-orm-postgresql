@@ -48,9 +48,9 @@ describe('PostgreSQLConnection', () => {
         expect(model.number).toEqual('123');
         expect(model.boolean).toEqual('true');
         expect(model.date).toEqual('2022-01-01');
-        expect(model._.Roles).toBeInstanceOf(Array);
-        expect(model._.Roles[0]).toBeInstanceOf(Role);
-        expect(model._.Roles[0].name).toEqual('true');
+        expect(model.Roles).toBeInstanceOf(Array);
+        expect(model.Roles[0]).toBeInstanceOf(Role);
+        expect(model.Roles[0].name).toEqual('true');
       });
     });
 
@@ -74,17 +74,17 @@ describe('PostgreSQLConnection', () => {
         expect(roles[0]).toBeInstanceOf(Role);
         expect(roles[0].isPersisted()).toEqual(true);
         expect(roles[0].name).toEqual('admin');
-        expect(roles[0]._.Roles).toBe(undefined);
-        expect(roles[0]._.Users).toBeInstanceOf(Array);
-        expect(roles[0]._.Users.length).toEqual(1);
-        expect(roles[0]._.Users[0]).toBeInstanceOf(User);
-        expect(roles[0]._.Users[0]).toBe(user);
-        expect(roles[0]._.UserRoles).toBeInstanceOf(Array);
-        expect(roles[0]._.UserRoles.length).toEqual(1);
-        expect(roles[0]._.UserRoles[0]).toBeInstanceOf(UserRole);
-        expect(roles[0]._.UserRoles[0].isPersisted()).toEqual(true);
-        expect(roles[0]._.UserRoles[0].userID).toEqual(user.id);
-        expect(roles[0]._.UserRoles[0].roleID).toEqual(roles[0].id);
+        expect(roles[0].Roles).toBe(undefined);
+        expect(roles[0].Users).toBeInstanceOf(Array);
+        expect(roles[0].Users.length).toEqual(1);
+        expect(roles[0].Users[0]).toBeInstanceOf(User);
+        expect(roles[0].Users[0]).toBe(user);
+        expect(roles[0].UserRoles).toBeInstanceOf(Array);
+        expect(roles[0].UserRoles.length).toEqual(1);
+        expect(roles[0].UserRoles[0]).toBeInstanceOf(UserRole);
+        expect(roles[0].UserRoles[0].isPersisted()).toEqual(true);
+        expect(roles[0].UserRoles[0].userID).toEqual(user.id);
+        expect(roles[0].UserRoles[0].roleID).toEqual(roles[0].id);
 
         expect(await Role.count()).toBe(1);
         expect(await UserRole.count()).toBe(1);
@@ -124,12 +124,12 @@ describe('PostgreSQLConnection', () => {
         for (let i = 0, il = roles.length; i < il; i++) {
           expect(roles[i]).toBeInstanceOf(Role);
           expect(roles[i].isPersisted()).toEqual(true);
-          expect(roles[i]._.UserRoles).toBeInstanceOf(Array);
-          expect(roles[i]._.UserRoles.length).toEqual(1);
-          expect(roles[i]._.UserRoles[0]).toBeInstanceOf(UserRole);
-          expect(roles[i]._.UserRoles[0].isPersisted()).toEqual(true);
-          expect(roles[i]._.UserRoles[0].userID).toEqual(user.id);
-          expect(roles[i]._.UserRoles[0].roleID).toEqual(roles[i].id);
+          expect(roles[i].UserRoles).toBeInstanceOf(Array);
+          expect(roles[i].UserRoles.length).toEqual(1);
+          expect(roles[i].UserRoles[0]).toBeInstanceOf(UserRole);
+          expect(roles[i].UserRoles[0].isPersisted()).toEqual(true);
+          expect(roles[i].UserRoles[0].userID).toEqual(user.id);
+          expect(roles[i].UserRoles[0].roleID).toEqual(roles[i].id);
         }
 
         expect(await Role.count()).toBe(3);
@@ -167,12 +167,12 @@ describe('PostgreSQLConnection', () => {
         for (let i = 0, il = roles.length; i < il; i++) {
           expect(roles[i]).toBeInstanceOf(Role);
           expect(roles[i].isPersisted()).toEqual(true);
-          expect(roles[i]._.UserRoles).toBeInstanceOf(Array);
-          expect(roles[i]._.UserRoles.length).toEqual(1);
-          expect(roles[i]._.UserRoles[0]).toBeInstanceOf(UserRole);
-          expect(roles[i]._.UserRoles[0].isPersisted()).toEqual(true);
-          expect(roles[i]._.UserRoles[0].userID).toEqual(user.id);
-          expect(roles[i]._.UserRoles[0].roleID).toEqual(roles[i].id);
+          expect(roles[i].UserRoles).toBeInstanceOf(Array);
+          expect(roles[i].UserRoles.length).toEqual(1);
+          expect(roles[i].UserRoles[0]).toBeInstanceOf(UserRole);
+          expect(roles[i].UserRoles[0].isPersisted()).toEqual(true);
+          expect(roles[i].UserRoles[0].userID).toEqual(user.id);
+          expect(roles[i].UserRoles[0].roleID).toEqual(roles[i].id);
         }
 
         expect(await Role.count()).toBe(3);

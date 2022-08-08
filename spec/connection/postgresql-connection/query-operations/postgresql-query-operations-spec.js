@@ -355,19 +355,19 @@ describe('PostgreSQLConnection', () => {
         primaryRoleID:  '81fe6880-af54-489d-a9dc-facfa98059ab',
       });
 
-      expect(Object.keys(users[0]._).sort()).toEqual([ 'Roles' ]);
-      expect(Object.keys(users[1]._).sort()).toEqual([ 'Roles' ]);
-      expect(users[0]._.Roles).toBeInstanceOf(Array);
-      expect(users[1]._.Roles).toBeInstanceOf(Array);
-      expect(users[0]._.Roles.length).toEqual(1);
-      expect(users[1]._.Roles.length).toEqual(1);
+      expect(Array.from(users[0].__assignedRelatedModels.keys()).sort()).toEqual([ 'Role' ]);
+      expect(Array.from(users[1].__assignedRelatedModels.keys()).sort()).toEqual([ 'Role' ]);
+      expect(users[0].Roles).toBeInstanceOf(Array);
+      expect(users[1].Roles).toBeInstanceOf(Array);
+      expect(users[0].Roles.length).toEqual(1);
+      expect(users[1].Roles.length).toEqual(1);
 
-      expect(users[0]._.Roles[0].toJSON()).toEqual({
+      expect(users[0].Roles[0].toJSON()).toEqual({
         id:   'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
         name: 'derp2',
       });
 
-      expect(users[1]._.Roles[0].toJSON()).toEqual({
+      expect(users[1].Roles[0].toJSON()).toEqual({
         id:   '81fe6880-af54-489d-a9dc-facfa98059ab',
         name: 'derp',
       });
