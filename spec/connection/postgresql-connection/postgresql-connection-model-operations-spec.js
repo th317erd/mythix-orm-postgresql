@@ -50,10 +50,10 @@ describe('PostgreSQLConnection', () => {
 
           expect(creationOrder).toEqual([
             'Role',
-            'User',
             'RoleThing',
-            'UserRole',
+            'User',
             'UserThing',
+            'UserRole',
           ]);
         });
       });
@@ -140,7 +140,7 @@ describe('PostgreSQLConnection', () => {
         await connection.insert(models.ExtendedUser, userModels);
 
         let user = await models.ExtendedUser.where.first();
-        expect(JSON.stringify(user)).toEqual('{"id":1,"createdAt":"07.31.2022 05:39:01","email":"test@example.com","firstName":"Mary","lastName":"Anne","playerType":"wizard","primaryRoleID":null,"updatedAt":"07.31.2022 05:39:01"}');
+        expect(JSON.stringify(user)).toEqual('{"id":1,"createdAt":"07.30.2022 22:39:01","email":"test@example.com","firstName":"Mary","lastName":"Anne","playerType":"wizard","primaryRoleID":null,"updatedAt":"07.30.2022 22:39:01"}');
       });
     });
 

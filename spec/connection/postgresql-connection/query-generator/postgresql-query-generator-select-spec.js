@@ -301,7 +301,7 @@ describe('PostgreSQLQueryGenerator', () => {
           .EQ('Bob'),
       );
 
-      expect(queryString).toEqual('INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN roles ON roles.id = role_things."roleID" AND roles.name = role_things.id');
+      expect(queryString).toEqual('INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN roles ON roles.id = role_things."roleID" AND roles.name = role_things.id');
     });
 
     it('can generate table join statements from query', () => {
@@ -329,7 +329,7 @@ describe('PostgreSQLQueryGenerator', () => {
             .EQ(Role.where.id),
       );
 
-      expect(queryString).toEqual('INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN roles ON roles.id = role_things."roleID"');
+      expect(queryString).toEqual('INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN roles ON roles.id = role_things."roleID"');
     });
 
     it('should assume PK if a model is provided', () => {
@@ -492,7 +492,7 @@ describe('PostgreSQLQueryGenerator', () => {
         .PROJECT('*'),
       );
 
-      expect(queryString).toEqual('SELECT roles.id AS "Role:id",roles.name AS "Role:name",role_things.id AS "RoleThing:id",role_things."roleID" AS "RoleThing:roleID",users."firstName" AS "User:firstName",users.id AS "User:id",users."lastName" AS "User:lastName",users."primaryRoleID" AS "User:primaryRoleID",user_things.id AS "UserThing:id",user_things."roleThingID" AS "UserThing:roleThingID",user_things."userID" AS "UserThing:userID" FROM users INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN roles ON roles.id = role_things."roleID" WHERE users."firstName" = \'Jonny\' AND users."lastName" = \'Bob\'');
+      expect(queryString).toEqual('SELECT roles.id AS "Role:id",roles.name AS "Role:name",role_things.id AS "RoleThing:id",role_things."roleID" AS "RoleThing:roleID",users."firstName" AS "User:firstName",users.id AS "User:id",users."lastName" AS "User:lastName",users."primaryRoleID" AS "User:primaryRoleID",user_things.id AS "UserThing:id",user_things."roleThingID" AS "UserThing:roleThingID",user_things."userID" AS "UserThing:userID" FROM users INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN roles ON roles.id = role_things."roleID" WHERE users."firstName" = \'Jonny\' AND users."lastName" = \'Bob\'');
     });
 
     it('can generate a select statement with a complex join statement and an order, limit, and offset', () => {
@@ -522,7 +522,7 @@ describe('PostgreSQLQueryGenerator', () => {
         .PROJECT('*'),
       );
 
-      expect(queryString).toEqual('SELECT roles.id AS "Role:id",roles.name AS "Role:name",role_things.id AS "RoleThing:id",role_things."roleID" AS "RoleThing:roleID",users."firstName" AS "User:firstName",users.id AS "User:id",users."lastName" AS "User:lastName",users."primaryRoleID" AS "User:primaryRoleID",user_things.id AS "UserThing:id",user_things."roleThingID" AS "UserThing:roleThingID",user_things."userID" AS "UserThing:userID" FROM users INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN roles ON roles.id = role_things."roleID" WHERE users."firstName" = \'Jonny\' AND users."lastName" = \'Bob\' ORDER BY users."firstName" ASC LIMIT 100 OFFSET 500');
+      expect(queryString).toEqual('SELECT roles.id AS "Role:id",roles.name AS "Role:name",role_things.id AS "RoleThing:id",role_things."roleID" AS "RoleThing:roleID",users."firstName" AS "User:firstName",users.id AS "User:id",users."lastName" AS "User:lastName",users."primaryRoleID" AS "User:primaryRoleID",user_things.id AS "UserThing:id",user_things."roleThingID" AS "UserThing:roleThingID",user_things."userID" AS "UserThing:userID" FROM users INNER JOIN user_things ON user_things."userID" = users.id INNER JOIN role_things ON role_things.id = user_things."roleThingID" INNER JOIN roles ON roles.id = role_things."roleID" WHERE users."firstName" = \'Jonny\' AND users."lastName" = \'Bob\' ORDER BY users."firstName" ASC LIMIT 100 OFFSET 500');
     });
   });
 });
