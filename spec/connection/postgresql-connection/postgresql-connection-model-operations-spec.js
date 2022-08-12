@@ -5,7 +5,7 @@
 /* global Buffer, describe, it, expect, beforeAll, afterEach, beforeAll, spyOn, fail */
 
 const { Utils } = require('mythix-orm');
-const moment    = require('mythix-orm/node_modules/moment');
+const moment    = require('moment');
 
 const {
   XID_REGEXP,
