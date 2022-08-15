@@ -89,9 +89,9 @@ describe('PostgreSQLConnection', () => {
 
         let user = await models.ExtendedUser.where.first();
         expect(user.id).toEqual(1);
-        expect(user.createdAt).toBeInstanceOf(moment);
+        expect(moment.isMoment(user.createdAt)).toEqual(true);
         expect(user.createdAt.isValid()).toEqual(true);
-        expect(user.updatedAt).toBeInstanceOf(moment);
+        expect(moment.isMoment(user.updatedAt)).toEqual(true);
         expect(user.updatedAt.isValid()).toEqual(true);
 
         let previousUpdatedAt = user.updatedAt;
@@ -112,14 +112,14 @@ describe('PostgreSQLConnection', () => {
 
         let time = await models.Time.where.first();
         expect(time.id).toMatch(XID_REGEXP);
-        expect(time.datetime).toBeInstanceOf(moment);
+        expect(moment.isMoment(time.datetime)).toEqual(true);
         expect(time.datetime.isValid()).toEqual(true);
-        expect(time.datetimeLocal).toBeInstanceOf(moment);
+        expect(moment.isMoment(time.datetimeLocal)).toEqual(true);
         expect(time.datetimeLocal.isValid()).toEqual(true);
-        expect(time.date).toBeInstanceOf(moment);
+        expect(moment.isMoment(time.date)).toEqual(true);
         expect(time.date.isValid()).toEqual(true);
         expect(time.date.toISOString()).toMatch(ISO8601_DATE_REGEXP);
-        expect(time.dateLocal).toBeInstanceOf(moment);
+        expect(moment.isMoment(time.dateLocal)).toEqual(true);
         expect(time.dateLocal.isValid()).toEqual(true);
         expect(time.dateLocal.toISOString()).toMatch(ISO8601_DATE_REGEXP);
       });

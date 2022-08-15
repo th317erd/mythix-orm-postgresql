@@ -32,6 +32,10 @@
     "url": "https://github.com/th317erd/mythix-orm-postgresql/issues"
   },
   "homepage": "https://github.com/th317erd/mythix-orm-postgresql#readme",
+  "peerDependencies": {
+    "mythix-orm": "^1.0.4",
+    "mythix-orm-sql-base": "^1.0.4"
+  },
   "dependencies": {
     "nife": "^1.11.3",
     "pg": "^8.7.3",
