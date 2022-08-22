@@ -37,17 +37,17 @@ describe('PostgreSQLQueryGenerator', () => {
   describe('generateCreateTableStatement', () => {
     it('can generate a create table statement #1', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateCreateTableStatement(User)).toEqual('CREATE TABLE IF NOT EXISTS users (  id VARCHAR(36) PRIMARY KEY NOT NULL,\n  "firstName" VARCHAR(64),\n  "lastName" VARCHAR(64),\n  "primaryRoleID" VARCHAR(36),\n  FOREIGN KEY("primaryRoleID") REFERENCES roles(id) ON DELETE SET NULL ON UPDATE SET NULL\n);');
+      expect(queryGenerator.generateCreateTableStatement(User)).toEqual('CREATE TABLE IF NOT EXISTS users (  id VARCHAR(36) PRIMARY KEY NOT NULL,\n  "firstName" VARCHAR(64),\n  "lastName" VARCHAR(64),\n  "primaryRoleID" VARCHAR(36),\n  FOREIGN KEY("primaryRoleID") REFERENCES roles(id) ON DELETE SET NULL ON UPDATE SET NULL DEFERRABLE INITIALLY DEFERRED\n);');
     });
 
     it('can generate a create table statement #2', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateCreateTableStatement(ExtendedUser)).toEqual('CREATE TABLE IF NOT EXISTS extended_users (  id SERIAL PRIMARY KEY,\n  "createdAt" TIMESTAMP NOT NULL DEFAULT (NOW() AT TIME ZONE(\'UTC\')),\n  email VARCHAR(256) UNIQUE NOT NULL,\n  "firstName" VARCHAR(64),\n  "lastName" VARCHAR(64),\n  "playerType" VARCHAR(256) NOT NULL DEFAULT \'wizard\',\n  "primaryRoleID" VARCHAR(36),\n  "updatedAt" TIMESTAMP NOT NULL DEFAULT (NOW() AT TIME ZONE(\'UTC\')),\n  FOREIGN KEY("primaryRoleID") REFERENCES roles(id) ON DELETE SET NULL ON UPDATE SET NULL\n);');
+      expect(queryGenerator.generateCreateTableStatement(ExtendedUser)).toEqual('CREATE TABLE IF NOT EXISTS extended_users (  id SERIAL PRIMARY KEY,\n  "createdAt" TIMESTAMP NOT NULL DEFAULT (NOW() AT TIME ZONE(\'UTC\')),\n  email VARCHAR(256) UNIQUE NOT NULL,\n  "firstName" VARCHAR(64),\n  "lastName" VARCHAR(64),\n  "playerType" VARCHAR(256) NOT NULL DEFAULT \'wizard\',\n  "primaryRoleID" VARCHAR(36),\n  "updatedAt" TIMESTAMP NOT NULL DEFAULT (NOW() AT TIME ZONE(\'UTC\')),\n  FOREIGN KEY("primaryRoleID") REFERENCES roles(id) ON DELETE SET NULL ON UPDATE SET NULL DEFERRABLE INITIALLY DEFERRED\n);');
     });
 
     it('can generate a create table statement with a foreign key', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateCreateTableStatement(RoleThing)).toEqual('CREATE TABLE IF NOT EXISTS role_things (  id VARCHAR(36) PRIMARY KEY NOT NULL,\n  "roleID" VARCHAR(36),\n  FOREIGN KEY("roleID") REFERENCES roles(id) ON DELETE CASCADE ON UPDATE CASCADE\n);');
+      expect(queryGenerator.generateCreateTableStatement(RoleThing)).toEqual('CREATE TABLE IF NOT EXISTS role_things (  id VARCHAR(36) PRIMARY KEY NOT NULL,\n  "roleID" VARCHAR(36),\n  FOREIGN KEY("roleID") REFERENCES roles(id) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED\n);');
     });
   });
 
