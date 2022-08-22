@@ -56,7 +56,7 @@ describe('PostgreSQLConnection', () => {
       });
 
       expect(statements.length).toEqual(3);
-      expect(statements[0][0]).toEqual('BEGIN');
+      expect(statements[0][0]).toEqual('BEGIN DEFERRABLE');
       expect(statements[1][0]).toEqual('SELECT 1+1');
       expect(statements[2][0]).toEqual('COMMIT');
     });
@@ -78,7 +78,7 @@ describe('PostgreSQLConnection', () => {
       });
 
       expect(statements.length).toEqual(5);
-      expect(statements[0][0]).toEqual('BEGIN');
+      expect(statements[0][0]).toEqual('BEGIN DEFERRABLE');
       expect(statements[1][0]).toMatch(/SAVEPOINT SP[A-P]{32}/);
       expect(statements[2][0]).toEqual('SELECT 1+1');
       expect(statements[3][0]).toMatch('RELEASE SAVEPOINT SP[A-P]{32}');
@@ -104,7 +104,7 @@ describe('PostgreSQLConnection', () => {
       } catch (error) {
         expect(error.message).toEqual('syntax error at or near "DERP"');
         expect(statements.length).toEqual(3);
-        expect(statements[0][0]).toEqual('BEGIN');
+        expect(statements[0][0]).toEqual('BEGIN DEFERRABLE');
         expect(statements[1][0]).toEqual('DERP 1+1');
         expect(statements[2][0]).toEqual('ROLLBACK');
       }
@@ -131,7 +131,7 @@ describe('PostgreSQLConnection', () => {
       } catch (error) {
         expect(error.message).toEqual('syntax error at or near "DERP"');
         expect(statements.length).toEqual(5);
-        expect(statements[0][0]).toEqual('BEGIN');
+        expect(statements[0][0]).toEqual('BEGIN DEFERRABLE');
         expect(statements[1][0]).toMatch(/SAVEPOINT SP[A-P]{32}/);
         expect(statements[2][0]).toEqual('DERP 1+1');
         expect(statements[3][0]).toMatch('ROLLBACK TO SAVEPOINT SP[A-P]{32}');
