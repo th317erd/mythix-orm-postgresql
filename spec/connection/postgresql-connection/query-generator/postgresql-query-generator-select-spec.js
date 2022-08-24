@@ -3,7 +3,7 @@
 
 'use strict';
 
-/* global describe, it, expect, beforeAll, afterEach */
+/* global describe, it, expect, beforeAll, afterEach, fail */
 
 const { Literals } = require('mythix-orm');
 
@@ -49,100 +49,100 @@ describe('PostgreSQLQueryGenerator', () => {
   describe('generateSelectQueryOperatorFromQueryEngineOperator', () => {
     it('can generate condition operators for EQ', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', null)).toEqual('IS');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', true)).toEqual('IS');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', false)).toEqual('IS');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', 'derp')).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', 1)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', BigInt(1))).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', [])).toEqual('IN');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', null)).toEqual('IS');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', true)).toEqual('IS');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', false)).toEqual('IS');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', 'derp')).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', 1)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', BigInt(1))).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', [])).toEqual('IN');
     });
 
     it('can generate condition operators for EQ (as reference)', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', null, true)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', true, true)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', false, true)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', 'derp', true)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', 1, true)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', BigInt(1), true)).toEqual('=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('EQ', [], true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', null, true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', true, true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', false, true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', 'derp', true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', 1, true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', BigInt(1), true)).toEqual('=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'EQ', [], true)).toEqual('=');
     });
 
     it('can generate condition operators for NEQ', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', null)).toEqual('IS NOT');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', true)).toEqual('IS NOT');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', false)).toEqual('IS NOT');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', 'derp')).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', 1)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', BigInt(1))).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', [])).toEqual('NOT IN');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', null)).toEqual('IS NOT');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', true)).toEqual('IS NOT');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', false)).toEqual('IS NOT');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', 'derp')).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', 1)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', BigInt(1))).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', [])).toEqual('NOT IN');
     });
 
     it('can generate condition operators for NEQ (as reference)', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', null, true)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', true, true)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', false, true)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', 'derp', true)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', 1, true)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', BigInt(1), true)).toEqual('!=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('NEQ', [], true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', null, true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', true, true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', false, true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', 'derp', true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', 1, true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', BigInt(1), true)).toEqual('!=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'NEQ', [], true)).toEqual('!=');
     });
 
     it('can generate condition operators for GT', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', null)).toEqual('>');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', true)).toEqual('>');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', false)).toEqual('>');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', 'derp')).toEqual('>');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', 1)).toEqual('>');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', BigInt(1))).toEqual('>');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GT', [])).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', null)).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', true)).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', false)).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', 'derp')).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', 1)).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', BigInt(1))).toEqual('>');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GT', [])).toEqual('>');
     });
 
     it('can generate condition operators for GTE', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', null)).toEqual('>=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', true)).toEqual('>=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', false)).toEqual('>=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', 'derp')).toEqual('>=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', 1)).toEqual('>=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', BigInt(1))).toEqual('>=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('GTE', [])).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', null)).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', true)).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', false)).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', 'derp')).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', 1)).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', BigInt(1))).toEqual('>=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'GTE', [])).toEqual('>=');
     });
 
     it('can generate condition operators for LT', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', null)).toEqual('<');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', true)).toEqual('<');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', false)).toEqual('<');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', 'derp')).toEqual('<');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', 1)).toEqual('<');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', BigInt(1))).toEqual('<');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LT', [])).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', null)).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', true)).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', false)).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', 'derp')).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', 1)).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', BigInt(1))).toEqual('<');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LT', [])).toEqual('<');
     });
 
     it('can generate condition operators for LTE', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', null)).toEqual('<=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', true)).toEqual('<=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', false)).toEqual('<=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', 'derp')).toEqual('<=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', 1)).toEqual('<=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', BigInt(1))).toEqual('<=');
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('LTE', [])).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', null)).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', true)).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', false)).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', 'derp')).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', 1)).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', BigInt(1))).toEqual('<=');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'LTE', [])).toEqual('<=');
     });
 
     it('can generate condition operators with a literal', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator(new Literals.Literal('EXISTS'), null)).toEqual('EXISTS');
+      expect(queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, new Literals.Literal('EXISTS'), null)).toEqual('EXISTS');
     });
 
     it('should throw an error on unknown operator', () => {
       let queryGenerator = connection.getQueryGenerator();
-      expect(() => queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator('UNKNOWN', null)).toThrow(new Error('PostgreSQLQueryGenerator::generateSelectQueryOperatorFromQueryEngineOperator: Unknown operator "UNKNOWN".'));
+      expect(() => queryGenerator.generateSelectQueryOperatorFromQueryEngineOperator({}, 'UNKNOWN', null)).toThrow(new Error('PostgreSQLQueryGenerator::generateSelectQueryOperatorFromQueryEngineOperator: Unknown operator "UNKNOWN".'));
     });
   });
 
@@ -247,6 +247,98 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp')).toEqual('users.id <= \'derp\'');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, 1)).toEqual('users.id <= \'1\'');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, BigInt(1))).toEqual('users.id <= 1');
+    });
+
+    it('can generate a query condition (LIKE)', () => {
+      const queryPart = { Model: User, Field: User.fields.id, not: false, operator: 'LIKE', inverseOperator: 'NOT_LIKE' };
+
+      let queryGenerator = connection.getQueryGenerator();
+
+      let badValues = [
+        {},
+        null,
+        true,
+        false,
+        10,
+        BigInt(10),
+        0,
+        Infinity,
+        NaN,
+      ];
+
+      for (let i = 0, il = badValues.length; i < il; i++) {
+        let badValue = badValues[i];
+
+        try {
+          queryGenerator.generateSelectQueryCondition(queryPart, badValue);
+          fail('unreachable');
+        } catch (error) {
+          expect(error).toMatch(/The "LIKE" operator requires a string for a value/);
+        }
+      }
+
+      // Array is a special case
+      try {
+        queryGenerator.generateSelectQueryCondition(queryPart, []);
+        fail('unreachable');
+      } catch (error) {
+        expect(error).toMatch(/Invalid value provided to operator "LIKE"/);
+      }
+
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp')).toEqual('users.id ILIKE \'derp\'');
+    });
+
+    it('should be able to use "caseSensitive" option (LIKE)', () => {
+      const queryPart = { Model: User, Field: User.fields.id, not: false, operator: 'LIKE', inverseOperator: 'NOT_LIKE', caseSensitive: true };
+
+      let queryGenerator = connection.getQueryGenerator();
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp')).toEqual('users.id LIKE \'derp\'');
+    });
+
+    it('can generate a query condition (NOT LIKE)', () => {
+      const queryPart = { Model: User, Field: User.fields.id, not: true, operator: 'LIKE', inverseOperator: 'NOT_LIKE' };
+
+      let queryGenerator = connection.getQueryGenerator();
+
+      let badValues = [
+        {},
+        null,
+        true,
+        false,
+        10,
+        BigInt(10),
+        0,
+        Infinity,
+        NaN,
+      ];
+
+      for (let i = 0, il = badValues.length; i < il; i++) {
+        let badValue = badValues[i];
+
+        try {
+          queryGenerator.generateSelectQueryCondition(queryPart, badValue);
+          fail('unreachable');
+        } catch (error) {
+          expect(error).toMatch(/The "NOT LIKE" operator requires a string for a value/);
+        }
+      }
+
+      // Array is a special case
+      try {
+          queryGenerator.generateSelectQueryCondition(queryPart, []);
+          fail('unreachable');
+        } catch (error) {
+          expect(error).toMatch(/Invalid value provided to operator "NOT_LIKE"/);
+        }
+
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp')).toEqual('users.id NOT ILIKE \'derp\'');
+    });
+
+    it('should be able to use "caseSensitive" option (NOT LIKE)', () => {
+      const queryPart = { Model: User, Field: User.fields.id, not: true, operator: 'LIKE', inverseOperator: 'NOT_LIKE', caseSensitive: true };
+
+      let queryGenerator = connection.getQueryGenerator();
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp')).toEqual('users.id NOT LIKE \'derp\'');
     });
 
     it('can generate a query condition (using literals)', () => {
