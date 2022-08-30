@@ -52,8 +52,8 @@ describe('PostgreSQLConnection', () => {
             'Role',
             'RoleThing',
             'User',
-            'UserThing',
             'UserRole',
+            'UserThing',
           ]);
         });
       });

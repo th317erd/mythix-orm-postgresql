@@ -300,7 +300,7 @@ describe('PostgreSQLConnection', () => {
         expect(avg).toEqual(12);
 
         avg = await Number.where.average('numberFloat');
-        expect(avg).toEqual(16.4475);
+        expect(avg).toEqual(16.4474999904633);
       });
     });
 
