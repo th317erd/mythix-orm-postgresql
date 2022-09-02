@@ -342,14 +342,14 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator  = connection.getQueryGenerator();
       let result          = queryGenerator.generateDeleteStatement(User, User.where.ORDER('firstName').LIMIT(50).OFFSET(10));
 
-      expect(result).toEqual('DELETE FROM users WHERE users.id IN (SELECT DISTINCT users.id FROM users ORDER BY users."firstName" ASC LIMIT 50 OFFSET 10)');
+      expect(result).toEqual('DELETE FROM users WHERE users.id IN (SELECT DISTINCT users.id FROM users) ORDER BY users."firstName" ASC LIMIT 50 OFFSET 10');
     });
 
     it('should generate a delete statement with a where clause, and an order, limit, and offset', () => {
       let queryGenerator  = connection.getQueryGenerator();
       let result          = queryGenerator.generateDeleteStatement(User, User.where.firstName.EQ('Bob').ORDER('firstName').LIMIT(50).OFFSET(10));
 
-      expect(result).toEqual('DELETE FROM users WHERE users.id IN (SELECT DISTINCT users.id FROM users WHERE users."firstName" = \'Bob\' ORDER BY users."firstName" ASC LIMIT 50 OFFSET 10)');
+      expect(result).toEqual('DELETE FROM users WHERE users.id IN (SELECT DISTINCT users.id FROM users WHERE users."firstName" = \'Bob\') ORDER BY users."firstName" ASC LIMIT 50 OFFSET 10');
     });
   });
 });
