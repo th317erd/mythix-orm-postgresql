@@ -33,19 +33,19 @@
   },
   "homepage": "https://github.com/th317erd/mythix-orm-postgresql#readme",
   "peerDependencies": {
-    "mythix-orm": "^1.5.6",
-    "mythix-orm-sql-base": "^1.4.8"
+    "mythix-orm": "^1.6.2",
+    "mythix-orm-sql-base": "^1.5.1"
   },
   "dependencies": {
-    "nife": "^1.11.3",
+    "nife": "^1.12.1",
     "pg": "^8.8.0",
     "pg-format": "^1.0.4",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@spothero/eslint-plugin-spothero": "github:spothero/eslint-plugin-spothero",
-    "eslint": "^8.22.0",
-    "jasmine": "^4.3.0",
+    "eslint": "^8.23.1",
+    "jasmine": "^4.4.0",
     "moment": "^2.29.4",
     "nyc": "^15.1.0"
   },
