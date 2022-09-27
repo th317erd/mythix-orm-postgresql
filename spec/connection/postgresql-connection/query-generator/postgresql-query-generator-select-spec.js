@@ -170,8 +170,20 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, undefined ])).toEqual('users.id IN (\'stuff\',\'1\')');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, null ])).toEqual('(users.id IS NULL OR users.id IN (\'stuff\',\'1\'))');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ true, false, null ])).toEqual('(users.id IS TRUE OR users.id IS FALSE OR users.id IS NULL)');
-      expect(queryGenerator.generateSelectQueryCondition(queryPart, [])).toEqual('');
-      expect(queryGenerator.generateSelectQueryCondition(queryPart, [ undefined, {} ])).toEqual('');
+
+      try {
+        queryGenerator.generateSelectQueryCondition(queryPart, [ undefined, {} ]);
+        fail('unreachable');
+      } catch (error) {
+        expect(error.message).toMatch(/Array value provided to "id.EQ" can not be empty/);
+      }
+
+      try {
+        queryGenerator.generateSelectQueryCondition(queryPart, []);
+        fail('unreachable');
+      } catch (error) {
+        expect(error.message).toMatch(/Array value provided to "id.EQ" can not be empty/);
+      }
     });
 
     it('can generate a query condition (NEQ)', () => {
@@ -197,8 +209,20 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, undefined ])).toEqual('users.id NOT IN (\'stuff\',\'1\')');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, null ])).toEqual('(users.id IS NOT NULL OR users.id NOT IN (\'stuff\',\'1\'))');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ true, false, null ])).toEqual('(users.id IS NOT TRUE OR users.id IS NOT FALSE OR users.id IS NOT NULL)');
-      expect(queryGenerator.generateSelectQueryCondition(queryPart, [])).toEqual('');
-      expect(queryGenerator.generateSelectQueryCondition(queryPart, [ undefined, {} ])).toEqual('');
+
+      try {
+        queryGenerator.generateSelectQueryCondition(queryPart, [ undefined, {} ]);
+        fail('unreachable');
+      } catch (error) {
+        expect(error.message).toMatch(/Array value provided to "id.NEQ" can not be empty/);
+      }
+
+      try {
+        queryGenerator.generateSelectQueryCondition(queryPart, []);
+        fail('unreachable');
+      } catch (error) {
+        expect(error.message).toMatch(/Array value provided to "id.NEQ" can not be empty/);
+      }
     });
 
     it('can generate a query condition (GT)', () => {
