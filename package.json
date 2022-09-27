@@ -1,6 +1,6 @@
 {
   "name": "mythix-orm-postgresql",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "PostgreSQL driver for Mythix ORM",
   "main": "lib/index.js",
   "type": "commonjs",
