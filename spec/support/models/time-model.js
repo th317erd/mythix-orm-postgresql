@@ -30,6 +30,14 @@ class Time extends Model {
       defaultValue: Types.DATE.Default.NOW.LOCAL,
       index:        true,
     },
+    'customDate': {
+      type:         Types.DATE,
+      index:        true,
+    },
+    'customDateTime': {
+      type:         Types.DATETIME,
+      index:        true,
+    },
   };
 }
 

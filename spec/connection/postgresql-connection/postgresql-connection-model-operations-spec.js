@@ -4,8 +4,8 @@
 
 /* global Buffer, describe, it, expect, beforeAll, afterEach, beforeAll, spyOn, fail */
 
-const { Utils } = require('mythix-orm');
-const moment    = require('moment');
+const { Utils }     = require('mythix-orm');
+const { DateTime }  = require('luxon');
 
 const {
   XID_REGEXP,
@@ -89,10 +89,10 @@ describe('PostgreSQLConnection', () => {
 
         let user = await models.ExtendedUser.where.first();
         expect(user.id).toEqual(1);
-        expect(moment.isMoment(user.createdAt)).toEqual(true);
-        expect(user.createdAt.isValid()).toEqual(true);
-        expect(moment.isMoment(user.updatedAt)).toEqual(true);
-        expect(user.updatedAt.isValid()).toEqual(true);
+        expect(DateTime.isDateTime(user.createdAt)).toEqual(true);
+        expect(user.createdAt.isValid).toEqual(true);
+        expect(DateTime.isDateTime(user.updatedAt)).toEqual(true);
+        expect(user.updatedAt.isValid).toEqual(true);
 
         let previousUpdatedAt = user.updatedAt;
 
@@ -112,16 +112,16 @@ describe('PostgreSQLConnection', () => {
 
         let time = await models.Time.where.first();
         expect(time.id).toMatch(XID_REGEXP);
-        expect(moment.isMoment(time.datetime)).toEqual(true);
-        expect(time.datetime.isValid()).toEqual(true);
-        expect(moment.isMoment(time.datetimeLocal)).toEqual(true);
-        expect(time.datetimeLocal.isValid()).toEqual(true);
-        expect(moment.isMoment(time.date)).toEqual(true);
-        expect(time.date.isValid()).toEqual(true);
-        expect(time.date.toISOString()).toMatch(ISO8601_DATE_REGEXP);
-        expect(moment.isMoment(time.dateLocal)).toEqual(true);
-        expect(time.dateLocal.isValid()).toEqual(true);
-        expect(time.dateLocal.toISOString()).toMatch(ISO8601_DATE_REGEXP);
+        expect(DateTime.isDateTime(time.datetime)).toEqual(true);
+        expect(time.datetime.isValid).toEqual(true);
+        expect(DateTime.isDateTime(time.datetimeLocal)).toEqual(true);
+        expect(time.datetimeLocal.isValid).toEqual(true);
+        expect(DateTime.isDateTime(time.date)).toEqual(true);
+        expect(time.date.isValid).toEqual(true);
+        expect(time.date.toISO()).toMatch(ISO8601_DATE_REGEXP);
+        expect(DateTime.isDateTime(time.dateLocal)).toEqual(true);
+        expect(time.dateLocal.isValid).toEqual(true);
+        expect(time.dateLocal.toISO()).toMatch(ISO8601_DATE_REGEXP);
       });
     });
 
