@@ -2,7 +2,7 @@
 
 'use strict';
 
-/* global describe, it, expect, beforeAll, afterEach, beforeAll, spyOn */
+/* global describe, expect, beforeAll, afterEach, beforeAll, spyOn */
 
 const { Utils } = require('mythix-orm');
 
@@ -11,11 +11,16 @@ const {
   truncateTables,
 } = require('../postgresql-connection-helper');
 
+const { createRunners } = require('../../../support/test-helpers');
+
 describe('PostgreSQLConnection', () => {
   describe('database operations', () => {
     let connection;
     let User;
     let Role;
+
+    // eslint-disable-next-line no-unused-vars
+    const { it, fit } = createRunners(() => connection);
 
     beforeAll(async () => {
       try {

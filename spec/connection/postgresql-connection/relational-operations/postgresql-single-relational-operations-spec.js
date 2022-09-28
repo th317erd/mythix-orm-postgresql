@@ -2,10 +2,14 @@
 
 'use strict';
 
-/* global describe, it, expect, beforeAll, afterEach, beforeAll */
+/* global describe, expect, beforeAll, afterEach, beforeAll */
 
-const UUID            = require('uuid');
-const { UUID_REGEXP } = require('../../../support/test-helpers');
+const UUID = require('uuid');
+
+const {
+  UUID_REGEXP,
+  createRunners,
+} = require('../../../support/test-helpers');
 
 const {
   createConnection,
@@ -19,6 +23,9 @@ describe('PostgreSQLConnection', () => {
     let Role;
     let UserThing;
     let RoleThing;
+
+    // eslint-disable-next-line no-unused-vars
+    const { it, fit } = createRunners(() => connection);
 
     beforeAll(async () => {
       try {

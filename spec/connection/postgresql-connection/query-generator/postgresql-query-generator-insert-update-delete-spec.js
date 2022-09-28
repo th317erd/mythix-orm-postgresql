@@ -3,9 +3,12 @@
 
 'use strict';
 
-/* global describe, it, expect, beforeAll, afterEach */
+/* global describe, expect, beforeAll, afterEach */
 
-const { UUID_REGEXP } = require('../../../support/test-helpers');
+const {
+  UUID_REGEXP,
+  createRunners,
+} = require('../../../support/test-helpers');
 
 const {
   createConnection,
@@ -15,6 +18,9 @@ const {
 describe('PostgreSQLQueryGenerator', () => {
   let connection;
   let User;
+
+  // eslint-disable-next-line no-unused-vars
+  const { it, fit } = createRunners(() => connection);
 
   beforeAll(async () => {
     try {
