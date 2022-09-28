@@ -34,7 +34,7 @@
   "homepage": "https://github.com/th317erd/mythix-orm-postgresql#readme",
   "peerDependencies": {
     "mythix-orm": "^1.7.2",
-    "mythix-orm-sql-base": "^1.6.2"
+    "mythix-orm-sql-base": "^1.6.3"
   },
   "dependencies": {
     "luxon": "^3.0.4",
