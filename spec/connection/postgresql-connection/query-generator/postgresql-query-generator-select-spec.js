@@ -160,6 +160,7 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(queryGenerator.generateSelectQueryCondition(queryPart, true)).toEqual('users.id IS TRUE');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, false)).toEqual('users.id IS FALSE');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp')).toEqual('users.id = \'derp\'');
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, 'derp \'stuff\'')).toEqual('users.id = \'derp \'\'stuff\'\'\'');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, 1)).toEqual('users.id = \'1\'');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, BigInt(1))).toEqual('users.id = 1');
     });

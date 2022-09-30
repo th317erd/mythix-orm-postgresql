@@ -41,7 +41,7 @@ describe('PostgreSQLConnection', () => {
     describe('pluck', () => {
       it('should be able to pluck values', async () => {
         let insertModels = [
-          new User({ firstName: 'Test', lastName: 'User', primaryRole: new Role({ name: 'admin' }) }),
+          new User({ firstName: 'Test \'Mr. Derp\'', lastName: 'User', primaryRole: new Role({ name: 'admin' }) }),
           new User({ firstName: 'Mary', lastName: 'Anne', primaryRole: new Role({ name: 'member' }) }),
         ];
 
@@ -50,7 +50,7 @@ describe('PostgreSQLConnection', () => {
         let values = await connection.pluck(User.where.ORDER('firstName'), 'firstName');
         expect(values).toEqual([
           'Mary',
-          'Test',
+          'Test \'Mr. Derp\'',
         ]);
       });
 
