@@ -7,6 +7,7 @@
 const { Literals }              = require('mythix-orm');
 const { PostgreSQLConnection }  = require('../../../../lib');
 const { createRunners }         = require('../../../support/test-helpers');
+const DBCredentials             = require('../../../support/db-credentials.js');
 
 describe('PostgreSQLConnection', () => {
   describe('connection management', () => {
@@ -19,6 +20,7 @@ describe('PostgreSQLConnection', () => {
 
     beforeEach(async () => {
       connection = new PostgreSQLConnection({
+        ...DBCredentials,
         bindModels:         false,
         maxPoolConnections: 2,
         models:             require('../../../support/models'),
