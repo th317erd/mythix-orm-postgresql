@@ -68,7 +68,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        await User.where.update({ firstName: 'The', lastName: 'Thang' });
+        await User.where.updateAll({ firstName: 'The', lastName: 'Thang' });
 
         let users = await User.where.all();
         expect(users).toBeInstanceOf(Array);
@@ -89,7 +89,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        await User.where.firstName.EQ('Mary').update({ firstName: 'The', lastName: 'Thang' });
+        await User.where.firstName.EQ('Mary').updateAll({ firstName: 'The', lastName: 'Thang' });
 
         let users = await User.where.all();
         expect(users).toBeInstanceOf(Array);
