@@ -61,10 +61,10 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator  = connection.getQueryGenerator();
       let fieldList       = queryGenerator.getEscapedModelFields(User, { asProjection: true });
       expect(fieldList).toEqual({
-        'User:id':             'users.id AS "User:id"',
-        'User:firstName':      'users."firstName" AS "User:firstName"',
-        'User:lastName':       'users."lastName" AS "User:lastName"',
-        'User:primaryRoleID':  'users."primaryRoleID" AS "User:primaryRoleID"',
+        'User:id':            'users.id AS "User:id"',
+        'User:firstName':     'users."firstName" AS "User:firstName"',
+        'User:lastName':      'users."lastName" AS "User:lastName"',
+        'User:primaryRoleID': 'users."primaryRoleID" AS "User:primaryRoleID"',
       });
     });
   });

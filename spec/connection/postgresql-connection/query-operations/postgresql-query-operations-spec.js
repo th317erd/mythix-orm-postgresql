@@ -276,16 +276,16 @@ describe('PostgreSQLConnection', () => {
       expect(connection.buildModelDataMapFromSelectResults(query, result)).toEqual({
         User: [
           {
-            id:             'c69da6dc-189b-43e9-9b98-c9e0ba1d85eb',
-            firstName:      'First',
-            lastName:       null,
-            primaryRoleID:  'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
+            id:            'c69da6dc-189b-43e9-9b98-c9e0ba1d85eb',
+            firstName:     'First',
+            lastName:      null,
+            primaryRoleID: 'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
           },
           {
-            id:             '33144fb7-cffe-454e-8d45-9c585bc89fc6',
-            firstName:      'Mary',
-            lastName:       'Anne',
-            primaryRoleID:  '81fe6880-af54-489d-a9dc-facfa98059ab',
+            id:            '33144fb7-cffe-454e-8d45-9c585bc89fc6',
+            firstName:     'Mary',
+            lastName:      'Anne',
+            primaryRoleID: '81fe6880-af54-489d-a9dc-facfa98059ab',
           },
         ],
       });
@@ -305,16 +305,16 @@ describe('PostgreSQLConnection', () => {
       expect(connection.buildModelDataMapFromSelectResults(query, result)).toEqual({
         User: [
           {
-            id:             'c69da6dc-189b-43e9-9b98-c9e0ba1d85eb',
-            firstName:      'First',
-            lastName:       null,
-            primaryRoleID:  'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
+            id:            'c69da6dc-189b-43e9-9b98-c9e0ba1d85eb',
+            firstName:     'First',
+            lastName:      null,
+            primaryRoleID: 'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
           },
           {
-            id:             '33144fb7-cffe-454e-8d45-9c585bc89fc6',
-            firstName:      'Mary',
-            lastName:       'Anne',
-            primaryRoleID:  '81fe6880-af54-489d-a9dc-facfa98059ab',
+            id:            '33144fb7-cffe-454e-8d45-9c585bc89fc6',
+            firstName:     'Mary',
+            lastName:      'Anne',
+            primaryRoleID: '81fe6880-af54-489d-a9dc-facfa98059ab',
           },
         ],
         Role: [
@@ -349,17 +349,17 @@ describe('PostgreSQLConnection', () => {
       expect(users[1]).toBeInstanceOf(User);
 
       expect(users[0].toJSON()).toEqual({
-        id:             'c69da6dc-189b-43e9-9b98-c9e0ba1d85eb',
-        firstName:      'First',
-        lastName:       null,
-        primaryRoleID:  'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
+        id:            'c69da6dc-189b-43e9-9b98-c9e0ba1d85eb',
+        firstName:     'First',
+        lastName:      null,
+        primaryRoleID: 'f1635dbe-1f74-4000-b6af-e9dd92b0025d',
       });
 
       expect(users[1].toJSON()).toEqual({
-        id:             '33144fb7-cffe-454e-8d45-9c585bc89fc6',
-        firstName:      'Mary',
-        lastName:       'Anne',
-        primaryRoleID:  '81fe6880-af54-489d-a9dc-facfa98059ab',
+        id:            '33144fb7-cffe-454e-8d45-9c585bc89fc6',
+        firstName:     'Mary',
+        lastName:      'Anne',
+        primaryRoleID: '81fe6880-af54-489d-a9dc-facfa98059ab',
       });
 
       expect(Array.from(users[0].__assignedRelatedModels.keys()).sort()).toEqual([ 'Role' ]);

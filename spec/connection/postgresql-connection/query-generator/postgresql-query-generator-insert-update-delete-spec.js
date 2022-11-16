@@ -71,9 +71,9 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
-            firstName:  'Test',
-            lastName:   'User',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
+            firstName: 'Test',
+            lastName:  'User',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbf3\',\'Test\',\'User\')',
@@ -90,14 +90,14 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
-            firstName:  'Johnny',
-            lastName:   'Bob',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
+            firstName: 'Johnny',
+            lastName:  'Bob',
           },
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
-            firstName:  'Test',
-            lastName:   'User',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
+            firstName: 'Test',
+            lastName:  'User',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbfc\',\'Johnny\',\'Bob\'),\n(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbf3\',\'Test\',\'User\')',
@@ -114,14 +114,14 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
-            firstName:  'Johnny',
-            lastName:   'Bob',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
+            firstName: 'Johnny',
+            lastName:  'Bob',
           },
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
-            firstName:  'Test',
-            lastName:   'User',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
+            firstName: 'Test',
+            lastName:  'User',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbfc\',\'Johnny\',\'Bob\'),(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbf3\',\'Test\',\'User\')',
@@ -138,9 +138,9 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
-            firstName:  'Johnny',
-            lastName:   'Bob',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
+            firstName: 'Johnny',
+            lastName:  'Bob',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbfc\',\'Johnny\',\'Bob\')',
@@ -154,9 +154,9 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
-            firstName:  'Test',
-            lastName:   'User',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
+            firstName: 'Test',
+            lastName:  'User',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbf3\',\'Test\',\'User\')',
@@ -173,9 +173,9 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
-            firstName:  'Johnny',
-            lastName:   'Bob',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbfc',
+            firstName: 'Johnny',
+            lastName:  'Bob',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbfc\',\'Johnny\',\'Bob\')',
@@ -189,9 +189,9 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(result).toEqual({
         modelChanges: [
           {
-            id:         '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
-            firstName:  'Test',
-            lastName:   'User',
+            id:        '6a69f57b-9ada-45cd-8dd9-23a753a2bbf3',
+            firstName: 'Test',
+            lastName:  'User',
           },
         ],
         values: '(\'6a69f57b-9ada-45cd-8dd9-23a753a2bbf3\',\'Test\',\'User\')',

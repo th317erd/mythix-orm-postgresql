@@ -83,9 +83,9 @@ describe('PostgreSQLConnection', () => {
       it('will update timestamps as expected', async () => {
         let userModels = [
           new models.ExtendedUser({
-            email:      'test@example.com',
-            firstName:  'Mary',
-            lastName:   'Anne',
+            email:     'test@example.com',
+            firstName: 'Mary',
+            lastName:  'Anne',
           }),
         ];
 
@@ -133,11 +133,11 @@ describe('PostgreSQLConnection', () => {
       it('can serialize toJSON', async () => {
         let userModels = [
           new models.ExtendedUser({
-            email:      'test@example.com',
-            firstName:  'Mary',
-            lastName:   'Anne',
-            createdAt:   '07.30.2022 22:39:01',
-            updatedAt:   '07.30.2022 22:39:01',
+            email:     'test@example.com',
+            firstName: 'Mary',
+            lastName:  'Anne',
+            createdAt: '07.30.2022 22:39:01',
+            updatedAt: '07.30.2022 22:39:01',
           }),
         ];
 
@@ -152,9 +152,9 @@ describe('PostgreSQLConnection', () => {
       it('can reload a model in-place', async () => {
         let userModels = [
           new models.ExtendedUser({
-            email:      'test@example.com',
-            firstName:  'Mary',
-            lastName:   'Anne',
+            email:     'test@example.com',
+            firstName: 'Mary',
+            lastName:  'Anne',
           }),
         ];
 
@@ -179,14 +179,14 @@ describe('PostgreSQLConnection', () => {
       it('can update model fields before create', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     'not a number',
-            boolean:    'bad',
-            date:       '20-01-01',
+            number:  'not a number',
+            boolean: 'bad',
+            date:    '20-01-01',
           }),
           new models.ValidationTest({
-            number:     'not a number',
-            boolean:    'bad',
-            date:       '20-01-01',
+            number:  'not a number',
+            boolean: 'bad',
+            date:    '20-01-01',
           }),
         ];
 
@@ -211,16 +211,16 @@ describe('PostgreSQLConnection', () => {
         expect(validationModels).toBeInstanceOf(Array);
         expect(validationModels.length).toEqual(2);
         expect(Object.assign(validationModels[0].toJSON(), { id: null })).toEqual({
-          id:       null,
-          number:   '123',
-          boolean:  'false',
-          date:     '2001-01-01',
+          id:      null,
+          number:  '123',
+          boolean: 'false',
+          date:    '2001-01-01',
         });
         expect(Object.assign(validationModels[1].toJSON(), { id: null })).toEqual({
-          id:       null,
-          number:   '123',
-          boolean:  'false',
-          date:     '2001-01-01',
+          id:      null,
+          number:  '123',
+          boolean: 'false',
+          date:    '2001-01-01',
         });
       });
     });
@@ -229,14 +229,14 @@ describe('PostgreSQLConnection', () => {
       it('can update model fields before update', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     123,
-            boolean:    true,
-            date:       '2000-01-01',
+            number:  123,
+            boolean: true,
+            date:    '2000-01-01',
           }),
           new models.ValidationTest({
-            number:     456,
-            boolean:    false,
-            date:       '2000-01-01',
+            number:  456,
+            boolean: false,
+            date:    '2000-01-01',
           }),
         ];
 
@@ -280,16 +280,16 @@ describe('PostgreSQLConnection', () => {
         expect(validationModels).toBeInstanceOf(Array);
         expect(validationModels.length).toEqual(2);
         expect(Object.assign(validationModels[0].toJSON(), { id: null })).toEqual({
-          id:       null,
-          number:   '1231',
-          boolean:  'false',
-          date:     '2001-01-05',
+          id:      null,
+          number:  '1231',
+          boolean: 'false',
+          date:    '2001-01-05',
         });
         expect(Object.assign(validationModels[1].toJSON(), { id: null })).toEqual({
-          id:       null,
-          number:   '4561',
-          boolean:  'true',
-          date:     '2001-01-05',
+          id:      null,
+          number:  '4561',
+          boolean: 'true',
+          date:    '2001-01-05',
         });
       });
     });
@@ -298,14 +298,14 @@ describe('PostgreSQLConnection', () => {
       it('can validate model fields', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     123,
-            boolean:    true,
-            date:       '2000-01-01',
+            number:  123,
+            boolean: true,
+            date:    '2000-01-01',
           }),
           new models.ValidationTest({
-            number:     456,
-            boolean:    true,
-            date:       '2022-07-31',
+            number:  456,
+            boolean: true,
+            date:    '2022-07-31',
           }),
         ];
 
@@ -321,14 +321,14 @@ describe('PostgreSQLConnection', () => {
       it('can should fail validations properly #1', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     123,
-            boolean:    true,
-            date:       '2000-01-01',
+            number:  123,
+            boolean: true,
+            date:    '2000-01-01',
           }),
           new models.ValidationTest({
-            number:     'derp',
-            boolean:    true,
-            date:       '2022-07-31',
+            number:  'derp',
+            boolean: true,
+            date:    '2022-07-31',
           }),
         ];
 
@@ -345,14 +345,14 @@ describe('PostgreSQLConnection', () => {
       it('can should fail validations properly #2', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     123,
-            boolean:    'hello',
-            date:       '2000-01-01',
+            number:  123,
+            boolean: 'hello',
+            date:    '2000-01-01',
           }),
           new models.ValidationTest({
-            number:     'derp',
-            boolean:    true,
-            date:       '2022-07-31',
+            number:  'derp',
+            boolean: true,
+            date:    '2022-07-31',
           }),
         ];
 
@@ -369,14 +369,14 @@ describe('PostgreSQLConnection', () => {
       it('can should fail validations properly #3', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     123,
-            boolean:    'true',
-            date:       '20-01-01',
+            number:  123,
+            boolean: 'true',
+            date:    '20-01-01',
           }),
           new models.ValidationTest({
-            number:     1,
-            boolean:    true,
-            date:       '2022-07-31',
+            number:  1,
+            boolean: true,
+            date:    '2022-07-31',
           }),
         ];
 
@@ -393,9 +393,9 @@ describe('PostgreSQLConnection', () => {
       it('can should skip validations if onBeforeSave is overloaded', async () => {
         let validationModels = [
           new models.ValidationTest({
-            number:     'not a number',
-            boolean:    'nope',
-            date:       '20-01-01',
+            number:  'not a number',
+            boolean: 'nope',
+            date:    '20-01-01',
           }),
         ];
 

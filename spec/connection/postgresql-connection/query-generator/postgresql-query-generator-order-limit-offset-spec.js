@@ -42,8 +42,8 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator = connection.getQueryGenerator();
       expect(queryGenerator.generateOrderClause([
         {
-          Model:      User,
-          Field:      User.fields.id,
+          Model:     User,
+          Field:     User.fields.id,
           direction: '-',
         },
       ])).toEqual('ORDER BY users.id DESC');
@@ -53,13 +53,13 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator = connection.getQueryGenerator();
       expect(queryGenerator.generateOrderClause([
         {
-          Model:      User,
-          Field:      User.fields.id,
+          Model:     User,
+          Field:     User.fields.id,
           direction: '-',
         },
         {
-          Model:      User,
-          Field:      User.fields.firstName,
+          Model:     User,
+          Field:     User.fields.firstName,
           direction: '+',
         },
       ])).toEqual('ORDER BY users.id DESC,users."firstName" ASC');
@@ -81,9 +81,9 @@ describe('PostgreSQLQueryGenerator', () => {
         offset: 5,
         order:  [
           {
-            Model:      User,
-            Field:      User.fields.id,
-            direction:  '+',
+            Model:     User,
+            Field:     User.fields.id,
+            direction: '+',
           },
         ],
       });
@@ -96,9 +96,9 @@ describe('PostgreSQLQueryGenerator', () => {
         offset: 5,
         order:  [
           {
-            Model:      User,
-            Field:      User.fields.id,
-            direction:  '+',
+            Model:     User,
+            Field:     User.fields.id,
+            direction: '+',
           },
         ],
       });
@@ -111,24 +111,24 @@ describe('PostgreSQLQueryGenerator', () => {
         offset: undefined,
         order:  [
           {
-            Model:      User,
-            Field:      User.fields.id,
-            direction:  '+',
+            Model:     User,
+            Field:     User.fields.id,
+            direction: '+',
           },
           {
-            Model:      User,
-            Field:      User.fields.firstName,
-            direction:  '+',
+            Model:     User,
+            Field:     User.fields.firstName,
+            direction: '+',
           },
           {
-            Model:      User,
-            Field:      User.fields.lastName,
-            direction:  '-',
+            Model:     User,
+            Field:     User.fields.lastName,
+            direction: '-',
           },
           {
-            Model:      User,
-            Field:      User.fields.primaryRoleID,
-            direction:  '+',
+            Model:     User,
+            Field:     User.fields.primaryRoleID,
+            direction: '+',
           },
         ],
       });
@@ -141,14 +141,14 @@ describe('PostgreSQLQueryGenerator', () => {
         offset: 50,
         order:  [
           {
-            Model:      User,
-            Field:      User.fields.id,
-            direction:  '+',
+            Model:     User,
+            Field:     User.fields.id,
+            direction: '+',
           },
           {
-            Model:      User,
-            Field:      User.fields.firstName,
-            direction:  '-',
+            Model:     User,
+            Field:     User.fields.firstName,
+            direction: '-',
           },
         ],
       });

@@ -31,12 +31,12 @@ class Time extends Model {
       index:        true,
     },
     'customDate': {
-      type:         Types.DATE,
-      index:        true,
+      type:  Types.DATE,
+      index: true,
     },
     'customDateTime': {
-      type:         Types.DATETIME,
-      index:        true,
+      type:  Types.DATETIME,
+      index: true,
     },
   };
 }

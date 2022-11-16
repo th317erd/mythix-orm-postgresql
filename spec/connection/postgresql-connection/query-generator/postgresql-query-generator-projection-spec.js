@@ -62,9 +62,9 @@ describe('PostgreSQLQueryGenerator', () => {
         mappedResult.push({ [key]: value.projectedName });
 
       expect(mappedResult).toEqual([
-        { 'User:id':            'users.id AS "User:id"' },
+        { 'User:id': 'users.id AS "User:id"' },
         { 'User:primaryRoleID': 'users."primaryRoleID" AS "User:primaryRoleID"' },
-        { 'User:firstName':     'users."firstName" AS "User:firstName"' },
+        { 'User:firstName': 'users."firstName" AS "User:firstName"' },
       ]);
     });
   });
@@ -76,13 +76,13 @@ describe('PostgreSQLQueryGenerator', () => {
 
       expect(result).toEqual([
         {
-          fullFieldName:  'User:firstName',
-          projectedName:  'users."firstName" AS "User:firstName"',
-          Model:          User,
-          Field:          User.fields.firstName,
-          fieldName:      'firstName',
-          modelName:      'User',
-          direction:      '+',
+          fullFieldName: 'User:firstName',
+          projectedName: 'users."firstName" AS "User:firstName"',
+          Model:         User,
+          Field:         User.fields.firstName,
+          fieldName:     'firstName',
+          modelName:     'User',
+          direction:     '+',
         },
       ]);
     });
@@ -93,13 +93,13 @@ describe('PostgreSQLQueryGenerator', () => {
 
       expect(result).toEqual([
         {
-          fullFieldName:  'User:id',
-          projectedName:  'users.id AS "User:id"',
-          Model:          User,
-          Field:          User.fields.id,
-          fieldName:      'id',
-          modelName:      'User',
-          direction:      '+',
+          fullFieldName: 'User:id',
+          projectedName: 'users.id AS "User:id"',
+          Model:         User,
+          Field:         User.fields.id,
+          fieldName:     'id',
+          modelName:     'User',
+          direction:     '+',
         },
       ]);
     });
@@ -110,13 +110,13 @@ describe('PostgreSQLQueryGenerator', () => {
 
       expect(result).toEqual([
         {
-          fullFieldName:  'User:id',
-          projectedName:  'users.id AS "User:id"',
-          Model:          User,
-          Field:          User.fields.id,
-          fieldName:      'id',
-          modelName:      'User',
-          direction:      '+',
+          fullFieldName: 'User:id',
+          projectedName: 'users.id AS "User:id"',
+          Model:         User,
+          Field:         User.fields.id,
+          fieldName:     'id',
+          modelName:     'User',
+          direction:     '+',
         },
       ]);
     });
@@ -127,22 +127,22 @@ describe('PostgreSQLQueryGenerator', () => {
 
       expect(result).toEqual([
         {
-          projectedName:  'roles.id AS "Role:id"',
-          Model:          Role,
-          Field:          Role.fields.id,
-          direction:      '+',
-          fullFieldName:  'Role:id',
-          fieldName:      'id',
-          modelName:      'Role',
+          projectedName: 'roles.id AS "Role:id"',
+          Model:         Role,
+          Field:         Role.fields.id,
+          direction:     '+',
+          fullFieldName: 'Role:id',
+          fieldName:     'id',
+          modelName:     'Role',
         },
         {
-          projectedName:  'roles.name AS "Role:name"',
-          Model:          Role,
-          Field:          Role.fields.name,
-          direction:      '+',
-          fullFieldName:  'Role:name',
-          fieldName:      'name',
-          modelName:      'Role',
+          projectedName: 'roles.name AS "Role:name"',
+          Model:         Role,
+          Field:         Role.fields.name,
+          direction:     '+',
+          fullFieldName: 'Role:name',
+          fieldName:     'name',
+          modelName:     'Role',
         },
       ]);
     });
@@ -153,13 +153,13 @@ describe('PostgreSQLQueryGenerator', () => {
 
       expect(result).toEqual([
         {
-          fullFieldName:  'User:id',
-          projectedName:  'users.id AS "User:id"',
-          Model:          User,
-          Field:          User.fields.id,
-          fieldName:      'id',
-          modelName:      'User',
-          direction:      '+',
+          fullFieldName: 'User:id',
+          projectedName: 'users.id AS "User:id"',
+          Model:         User,
+          Field:         User.fields.id,
+          fieldName:     'id',
+          modelName:     'User',
+          direction:     '+',
         },
       ]);
     });
@@ -168,13 +168,13 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator = connection.getQueryGenerator();
       expect(queryGenerator.getProjectionFromQueryEngine(User.where.primaryRoleID.EQ(1).PROJECT('id').PROJECT('-firstName'))).toEqual([
         {
-          fullFieldName:  'User:id',
-          projectedName:  'users.id AS "User:id"',
-          Model:          User,
-          Field:          User.fields.id,
-          fieldName:      'id',
-          modelName:      'User',
-          direction:      '+',
+          fullFieldName: 'User:id',
+          projectedName: 'users.id AS "User:id"',
+          Model:         User,
+          Field:         User.fields.id,
+          fieldName:     'id',
+          modelName:     'User',
+          direction:     '+',
         },
       ]);
     });
