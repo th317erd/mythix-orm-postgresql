@@ -219,7 +219,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        let user = await User.where.ORDER('-firstName').last();
+        let user = await User.where.ORDER.DESC('firstName').last();
         expect(user).toBeInstanceOf(User);
         expect(user.id).toEqual(insertModels[1].id);
       });
@@ -232,7 +232,7 @@ describe('PostgreSQLConnection', () => {
 
         await connection.insert(User, insertModels);
 
-        let users = await User.where.ORDER('-firstName').last(10);
+        let users = await User.where.ORDER.DESC('firstName').last(10);
         expect(users).toBeInstanceOf(Array);
         expect(users.length).toEqual(2);
         expect(users[0]).toBeInstanceOf(User);

@@ -341,7 +341,7 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator  = connection.getQueryGenerator();
       let result          = queryGenerator.generateDeleteStatement(User, User.where.id.EQ('test'));
 
-      expect(result).toEqual('DELETE FROM users WHERE users.id = \'test\'');
+      expect(result).toEqual('DELETE FROM users WHERE users.id = \'test\' RETURNING users.id');
     });
 
     it('should generate a delete statement with an order, limit, and offset', () => {
@@ -355,7 +355,7 @@ describe('PostgreSQLQueryGenerator', () => {
       let queryGenerator  = connection.getQueryGenerator();
       let result          = queryGenerator.generateDeleteStatement(User, User.where.firstName.EQ('Bob').ORDER('firstName').LIMIT(50).OFFSET(10));
 
-      expect(result).toEqual('DELETE FROM users WHERE users."firstName" = \'Bob\' ORDER BY users."firstName" ASC LIMIT 50 OFFSET 10');
+      expect(result).toEqual('DELETE FROM users WHERE users."firstName" = \'Bob\' RETURNING users.id ORDER BY users."firstName" ASC LIMIT 50 OFFSET 10');
     });
   });
 });

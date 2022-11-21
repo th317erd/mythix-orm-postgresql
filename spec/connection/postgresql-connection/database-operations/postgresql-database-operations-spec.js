@@ -263,14 +263,8 @@ describe('PostgreSQLConnection', () => {
         storedModels[0].firstName = 'Test1';
         storedModels[1].lastName = 'Test1';
 
-        let users = await connection.update(User, storedModels);
-
-        expect(users).toBeInstanceOf(Array);
-        expect(users.length).toEqual(2);
-        expect(users[0]).toBeInstanceOf(User);
-        expect(users[1]).toBeInstanceOf(User);
-        expect(users[0].id).toEqual(insertModels[0].id);
-        expect(users[1].id).toEqual(insertModels[1].id);
+        let result = await connection.update(User, storedModels);
+        expect(result).toBe(2);
 
         // Ensure the changes were persisted
         let storedUsers = await Utils.collect(connection.select(User));
@@ -284,6 +278,33 @@ describe('PostgreSQLConnection', () => {
         expect(storedUsers[1].id).toEqual(insertModels[1].id);
         expect(storedUsers[1].firstName).toEqual(insertModels[1].firstName);
         expect(storedUsers[1].lastName).toEqual('Test1');
+      });
+
+      it('should be able to update models with a query', async () => {
+        let insertModels = [
+          new User({ firstName: 'Test', lastName: 'User', primaryRole: new Role({ name: 'admin' }) }),
+          new User({ firstName: 'Mary', lastName: 'Anne', primaryRole: new Role({ name: 'member' }) }),
+        ];
+
+        let storedModels = await connection.insert(User, insertModels);
+        expect(storedModels).toBeInstanceOf(Array);
+        expect(storedModels.length).toEqual(2);
+
+        let result = await User.where.firstName.EQ('Mary').updateAll({ lastName: 'Smith' });
+        expect(result).toEqual(1);
+
+        // Ensure the changes were persisted
+        let storedUsers = await Utils.collect(connection.select(User));
+        expect(storedUsers).toBeInstanceOf(Array);
+        expect(storedUsers.length).toEqual(2);
+        expect(storedUsers[0]).toBeInstanceOf(User);
+        expect(storedUsers[1]).toBeInstanceOf(User);
+        expect(storedUsers[0].id).toEqual(insertModels[0].id);
+        expect(storedUsers[0].firstName).toEqual('Test');
+        expect(storedUsers[0].lastName).toEqual(insertModels[0].lastName);
+        expect(storedUsers[1].id).toEqual(insertModels[1].id);
+        expect(storedUsers[1].firstName).toEqual(insertModels[1].firstName);
+        expect(storedUsers[1].lastName).toEqual('Smith');
       });
     });
 
@@ -348,7 +369,8 @@ describe('PostgreSQLConnection', () => {
         expect(storedModels).toBeInstanceOf(Array);
         expect(storedModels.length).toEqual(2);
 
-        await connection.destroy(User.where.lastName.EQ('Anne'));
+        let result = await connection.destroy(User.where.lastName.EQ('Anne'));
+        expect(result).toEqual(1);
 
         // Ensure the changes were persisted
         let storedUsers = await Utils.collect(connection.select(User));

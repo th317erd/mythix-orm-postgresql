@@ -210,7 +210,7 @@ describe('PostgreSQLConnection', () => {
         expect(await Role.where.count()).toEqual(1);
         expect(await User.where.count()).toEqual(2);
 
-        user = await User.where.ORDER('-firstName').first();
+        user = await User.where.ORDER.DESC('firstName').first();
         expect(user).toBeInstanceOf(User);
         expect(user.id).toEqual(userModels[0].id);
         expect(user.primaryRoleID).toEqual(null);

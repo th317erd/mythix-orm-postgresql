@@ -101,12 +101,8 @@ describe('PostgreSQLConnection', () => {
         let previousUpdatedAt = user.updatedAt;
 
         user.lastName = 'Joe';
-        let updatedUser = await connection.update(models.ExtendedUser, user);
-        expect(previousUpdatedAt.valueOf() < updatedUser.updatedAt.valueOf()).toEqual(true);
-
-        // Reload stored model to ensure results
-        user = await models.ExtendedUser.where.id.EQ(updatedUser.id).first();
-        expect(user.updatedAt.valueOf()).toEqual(updatedUser.updatedAt.valueOf());
+        await connection.update(models.ExtendedUser, user);
+        expect(previousUpdatedAt.valueOf() < user.updatedAt.valueOf()).toEqual(true);
       });
 
       it('can use remote and local time', async () => {
