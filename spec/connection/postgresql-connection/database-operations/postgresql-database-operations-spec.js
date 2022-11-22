@@ -159,6 +159,21 @@ describe('PostgreSQLConnection', () => {
         expect(users[0].id).toEqual(insertModels[1].id);
       });
 
+      it('should be able to select distinct with order', async () => {
+        let insertModels = [
+          new User({ firstName: 'Test', lastName: 'User', primaryRole: new Role({ name: 'admin' }) }),
+          new User({ firstName: 'Mary', lastName: 'Anne', primaryRole: new Role({ name: 'member' }) }),
+        ];
+
+        await connection.insert(User, insertModels);
+
+        let users = await Utils.collect(connection.select(User.where.DISTINCT('id').lastName.EQ('Anne').ORDER('firstName')));
+        expect(users).toBeInstanceOf(Array);
+        expect(users.length).toEqual(1);
+        expect(users[0]).toBeInstanceOf(User);
+        expect(users[0].id).toEqual(insertModels[1].id);
+      });
+
       it('should properly batch', async () => {
         let insertModels  = [];
         let testValues    = [];
