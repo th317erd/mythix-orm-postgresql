@@ -549,7 +549,7 @@ describe('PostgreSQLQueryGenerator', () => {
           .LIMIT(100)
           .OFFSET(500),
       );
-      expect(queryString).toEqual('SELECT users."firstName" AS "User:firstName",users."lastName" AS "User:lastName",users."primaryRoleID" AS "User:primaryRoleID" FROM users WHERE users."primaryRoleID" = \'1\' LIMIT 100 OFFSET 500');
+      expect(queryString).toEqual('SELECT DISTINCT ON(users.id) users.id AS "User:id",users."firstName" AS "User:firstName",users."lastName" AS "User:lastName",users."primaryRoleID" AS "User:primaryRoleID" FROM users WHERE users."primaryRoleID" = \'1\' LIMIT 100 OFFSET 500');
     });
 
     it('can generate a select statement using literals', () => {

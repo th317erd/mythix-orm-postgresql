@@ -50,7 +50,7 @@ describe('PostgreSQLConnection', () => {
 
       it('can stringify a literal to SQL', () => {
         let literal = PostgreSQLConnection.Literal('distinct', 'User:firstName');
-        expect(literal.toString(connection)).toEqual('DISTINCT users."firstName" AS "User:firstName"');
+        expect(literal.toString(connection)).toEqual('DISTINCT ON(users."firstName")');
       });
 
       it('will stringify to class name if no connection given', () => {
