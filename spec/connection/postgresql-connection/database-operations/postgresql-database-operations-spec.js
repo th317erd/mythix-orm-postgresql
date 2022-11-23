@@ -12,6 +12,7 @@ const {
 } = require('../postgresql-connection-helper');
 
 const { createRunners } = require('../../../support/test-helpers');
+const { Literals } = require('mythix-orm/lib/connection');
 
 describe('PostgreSQLConnection', () => {
   describe('database operations', () => {
@@ -172,6 +173,18 @@ describe('PostgreSQLConnection', () => {
         expect(users.length).toEqual(1);
         expect(users[0]).toBeInstanceOf(User);
         expect(users[0].id).toEqual(insertModels[1].id);
+      });
+
+      it('should be able to aggregate with distinct', async () => {
+        let insertModels = [
+          new User({ firstName: 'Test', lastName: 'User', primaryRole: new Role({ name: 'admin' }) }),
+          new User({ firstName: 'Mary', lastName: 'Anne', primaryRole: new Role({ name: 'member' }) }),
+        ];
+
+        await connection.insert(User, insertModels);
+
+        let userCount = await User.where.DISTINCT('id').lastName.EQ('Anne').ORDER('firstName').count('User:firstName');
+        expect(userCount).toEqual(1);
       });
 
       it('should properly batch', async () => {
