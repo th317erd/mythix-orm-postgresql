@@ -213,8 +213,8 @@ describe('PostgreSQLQueryGenerator', () => {
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1 ])).toEqual('users.id NOT IN (\'stuff\',\'1\')');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', BigInt(1) ])).toEqual('users.id NOT IN (\'stuff\',1)');
       expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, undefined ])).toEqual('users.id NOT IN (\'stuff\',\'1\')');
-      expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, null ])).toEqual('(users.id IS NOT NULL OR users.id NOT IN (\'stuff\',\'1\'))');
-      expect(queryGenerator.generateSelectQueryCondition(queryPart, [ true, false, null ])).toEqual('(users.id IS NOT TRUE OR users.id IS NOT FALSE OR users.id IS NOT NULL)');
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, [ 'stuff', 1, null ])).toEqual('(users.id IS NOT NULL AND users.id NOT IN (\'stuff\',\'1\'))');
+      expect(queryGenerator.generateSelectQueryCondition(queryPart, [ true, false, null ])).toEqual('(users.id IS NOT TRUE AND users.id IS NOT FALSE AND users.id IS NOT NULL)');
 
       try {
         queryGenerator.generateSelectQueryCondition(queryPart, [ undefined, {} ]);
