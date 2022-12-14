@@ -1,5 +1,3 @@
-# mythix-orm-postgresql
-
 SQLite database driver for [Mythix ORM](https://www.npmjs.com/package/mythix-orm).
 
 ## Install
@@ -9,8 +7,6 @@ npm i --save mythix-orm-postgresql
 ```
 
 ## Documentation
-
-Documentation can be found at the [WIKI](https://github.com/th317erd/mythix-orm-postgresql/wiki).
 
 Documentation for Mythix ORM can be found at the [Mythix ORM WIKI](https://github.com/th317erd/mythix-orm/wiki).
 
