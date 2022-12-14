@@ -1,6 +1,6 @@
 # mythix-orm-postgresql
 
-SQLite database driver for [Mythix ORM](https://www.npmjs.com/package/mythix-orm).
+PostgreSQL database driver for [Mythix ORM](https://www.npmjs.com/package/mythix-orm).
 
 ## Install
 
@@ -52,7 +52,7 @@ const { PostgreSQLConnection } = require('mythix-orm-postgresql');
 | `models` | `Array<Model>` | `undefined` | Models to register with the connection (these models will be bound to the connection if the `boundModels` option is `true`).
 | `password` | `string` | `undefined` | The password used to connect to the database. |
 | `port` | `string` | `5432` | The port used to connect to the database. |
-| `queryGenerator` | [QueryGenerator](https://github.com/th317erd/mythix-orm/wiki/QueryGeneratorBase) | <see>PostgreSQLQueryGenerator</see> | Provide an alternate `QueryGenerator` interface for generating SQL statements for SQLite. This is not usually needed, as the `SQLiteConnection` itself will provide its own generator interface. However, if you want to customize the default query generator, or want to provide your own, you can do so using this option. |
+| `queryGenerator` | [QueryGenerator](https://github.com/th317erd/mythix-orm/wiki/QueryGeneratorBase) | <see>PostgreSQLQueryGenerator</see> | Provide an alternate `QueryGenerator` interface for generating SQL statements for PostgreSQL. This is not usually needed, as the `SQLiteConnection` itself will provide its own generator interface. However, if you want to customize the default query generator, or want to provide your own, you can do so using this option. |
 | `queryTimeout` | `number` | `15000` | Number of milliseconds before a query call will timeout. |
 | `statementTimeout` | `number` | `15000` | Number of milliseconds before a statement in query will time out. |
 | `user` | `string` | `undefined` | The username used to connect to the database. |
