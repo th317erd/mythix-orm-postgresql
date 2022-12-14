@@ -1,3 +1,5 @@
+![Mythix](mythix-logo-colored.png)
+
 PostgreSQL database driver for [Mythix ORM](https://www.npmjs.com/package/mythix-orm).
 
 ## Install
