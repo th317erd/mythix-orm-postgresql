@@ -290,6 +290,9 @@ describe('PostgreSQLConnection', () => {
 
     describe('average', () => {
       it('can get average of models from a query', async () => {
+        // Previous failure to watch for:
+        // Expected 16.447499990463257 to equal 16.4474999904633
+
         let insertModels = [
           new Number({ numberInt: 10, numberFloat: 12.34 }),
           new Number({ numberInt: 11, numberFloat: 15.56 }),
@@ -303,7 +306,7 @@ describe('PostgreSQLConnection', () => {
         expect(avg).toEqual(12);
 
         avg = await Number.where.average('numberFloat');
-        expect(avg).toEqual(16.4474999904633);
+        expect(avg).toEqual(16.447499990463257);
       });
     });
 
