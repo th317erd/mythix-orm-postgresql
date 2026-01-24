@@ -4,11 +4,18 @@
   "description": "PostgreSQL driver for Mythix ORM",
   "main": "lib/index.js",
   "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "coverage": "clear ; node ./node_modules/.bin/nyc ./node_modules/.bin/jasmine",
     "test": "node ./node_modules/.bin/jasmine",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jasmine",
-    "test-watch": "watch 'clear ; node ./node_modules/.bin/jasmine' . --wait=2 --interval=1"
+    "test-watch": "watch 'clear ; node ./node_modules/.bin/jasmine' . --wait=2 --interval=1",
+    "db:start": "docker compose up -d --wait",
+    "db:stop": "docker compose down",
+    "db:logs": "docker compose logs -f",
+    "test:docker": "npm run db:start && PGPORT=5439 npm test; npm run db:stop"
   },
   "repository": {
     "type": "git",
@@ -37,17 +44,17 @@
     "mythix-orm-sql-base": "^1.12.1"
   },
   "dependencies": {
-    "luxon": "^3.3.0",
+    "luxon": "^3.7.2",
     "nife": "^1.12.1",
-    "pg": "^8.11.0",
+    "pg": "^8.16.0",
     "pg-format": "^1.0.4",
-    "uuid": "^9.0.0"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@spothero/eslint-plugin-spothero": "github:spothero/eslint-plugin-spothero",
-    "eslint": "^8.42.0",
-    "jasmine": "^5.0.1",
-    "nyc": "^15.1.0"
+    "eslint": "^8.57.1",
+    "jasmine": "^5.6.0",
+    "nyc": "^17.1.0"
   },
   "nyc": {
     "reporter": [

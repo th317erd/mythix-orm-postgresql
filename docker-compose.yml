@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: mythix-orm-postgresql-test
+    environment:
+      POSTGRES_USER: mythix
+      POSTGRES_PASSWORD: 9WrY4wfERFKJRhRUaa
+      POSTGRES_DB: mythix-test
+    ports:
+      - "5439:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mythix -d mythix-test"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
