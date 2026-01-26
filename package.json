@@ -8,14 +8,14 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "coverage": "clear ; node ./node_modules/.bin/nyc ./node_modules/.bin/jasmine",
-    "test": "node ./node_modules/.bin/jasmine",
+    "coverage": "clear ; ./scripts/run-tests.sh --coverage",
+    "test": "./scripts/run-tests.sh",
+    "test:raw": "node ./node_modules/.bin/jasmine",
     "test-debug": "node --inspect-brk ./node_modules/.bin/jasmine",
-    "test-watch": "watch 'clear ; node ./node_modules/.bin/jasmine' . --wait=2 --interval=1",
+    "test-watch": "watch 'clear ; ./scripts/run-tests.sh' . --wait=2 --interval=1",
     "db:start": "docker compose up -d --wait",
     "db:stop": "docker compose down",
-    "db:logs": "docker compose logs -f",
-    "test:docker": "npm run db:start && PGPORT=5439 npm test; npm run db:stop"
+    "db:logs": "docker compose logs -f"
   },
   "repository": {
     "type": "git",
